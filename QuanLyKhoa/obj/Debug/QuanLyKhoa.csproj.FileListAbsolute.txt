@@ -1,0 +1,10 @@
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\bin\Debug\QuanLyKhoa.exe.config
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\bin\Debug\QuanLyKhoa.exe
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\bin\Debug\QuanLyKhoa.pdb
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.csproj.AssemblyReference.cache
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Properties.Resources.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyKhoa.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.csproj.GenerateResource.cache
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.csproj.CoreCompileInputs.cache
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.exe
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.pdb
