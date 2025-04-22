@@ -59,8 +59,7 @@ namespace QuanLyKhoa
             cboNganh.DisplayMember = "NG_TenNganh";
             cboNganh.ValueMember = "NG_ID";
 
-            if (K_ID != 0 && dt.Rows.Count > 0)
-                cboNganh.SelectedIndexChanged += cboNganh_SelectedIndexChanged;
+            cboNganh.SelectedIndexChanged += cboNganh_SelectedIndexChanged;
 
             this.BeginInvoke(new Action(() =>
             {
@@ -97,6 +96,7 @@ namespace QuanLyKhoa
             int i = e.RowIndex;
             if (i >= 0 && dgvUsers.Rows[i].Cells["NG_ID"].Value != null)
             {
+                LoadingData = true;
                 cboNganh.SelectedValue = dgvUsers.Rows[i].Cells["NG_ID"].Value;
                 if (int.TryParse(cboKhoa.SelectedValue?.ToString(), out int selectKhoaID) && selectKhoaID != 0)
                 {
@@ -104,6 +104,7 @@ namespace QuanLyKhoa
                 }
                 txtSoTinChi.Text = dgvUsers.Rows[i].Cells["NG_SoTinChi"].Value.ToString();
                 txtMoTa.Text = dgvUsers.Rows[i].Cells["NG_MoTa"].Value.ToString();
+                LoadingData = false;
             }
         }
         private void setEnable(bool enable)
@@ -147,6 +148,7 @@ namespace QuanLyKhoa
             string stc = txtSoTinChi.Text.Trim();
             string mt = txtMoTa.Text.Trim();
             string khoa = cboKhoa.SelectedValue?.ToString();
+            LoadingData = true;
             if (AddNew)
             {
                 string sql = $"INSERT INTO tblNganh (NG_TenNganh, NG_SoTinChi, NG_MoTa, K_ID) VALUES (N'{nganh}', N'{stc}', N'{mt}', N'{khoa}')";
@@ -163,6 +165,7 @@ namespace QuanLyKhoa
                 LoadNganhTheoKhoa(K_ID);
 
             setEnable(false);
+            LoadingData = false;
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -181,6 +184,7 @@ namespace QuanLyKhoa
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
         private void quảnLíKhoaToolStripMenuItem_Click(object sender, EventArgs e)
