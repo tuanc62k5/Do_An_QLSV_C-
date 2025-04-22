@@ -67,11 +67,11 @@
     <Compile Include="QuanLyKhoaHoc.Designer.cs">
       <DependentUpon>QuanLyKhoaHoc.cs</DependentUpon>
     </Compile>
-    <Compile Include="QuanLyLop.cs">
+    <Compile Include="QuanLyLopHanhChinh.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QuanLyLop.Designer.cs">
-      <DependentUpon>QuanLyLop.cs</DependentUpon>
+    <Compile Include="QuanLyLopHanhChinh.Designer.cs">
+      <DependentUpon>QuanLyLopHanhChinh.cs</DependentUpon>
     </Compile>
     <Compile Include="QuanLyLopHocPhan.cs">
       <SubType>Form</SubType>
@@ -115,8 +115,8 @@
     <EmbeddedResource Include="QuanLyKhoaHoc.resx">
       <DependentUpon>QuanLyKhoaHoc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QuanLyLop.resx">
-      <DependentUpon>QuanLyLop.cs</DependentUpon>
+    <EmbeddedResource Include="QuanLyLopHanhChinh.resx">
+      <DependentUpon>QuanLyLopHanhChinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyLopHocPhan.resx">
       <DependentUpon>QuanLyLopHocPhan.cs</DependentUpon>
