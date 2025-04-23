@@ -155,47 +155,6 @@ namespace QuanLyKhoa
         {
             this.Close();
         }
-
-        private void quảnLíLớpHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyLopHocPhan f = new QuanLyLopHocPhan();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void quảnLíKhoaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyKhoa f = new QuanLyKhoa();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void quảnLíLớpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyLop f = new QuanLyLop();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void quảnLíNgànhToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyNganh f = new QuanLyNganh();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void quảnLíHọcPhầnToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            QuanLyHocPhan f = new QuanLyHocPhan();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
 

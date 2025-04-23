@@ -9,7 +9,6 @@ D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLySinhVie
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.exe
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.pdb
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyNganh.resources
-D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyLop.resources
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLySinhVien.resources
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyHocPhan.resources
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyLopHocPhan.resources

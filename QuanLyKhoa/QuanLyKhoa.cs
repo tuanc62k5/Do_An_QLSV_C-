@@ -151,36 +151,5 @@ namespace QuanLyKhoa
         {
             this.Close();
         }
-        private void quảnLíSinhViênToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLySinhVien f = new QuanLySinhVien();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void quảnLíLớpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyLop f = new QuanLyLop();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void quảnLíNgànhToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyNganh f = new QuanLyNganh();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void quảnLíHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyHocPhan f = new QuanLyHocPhan();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
     }
 }

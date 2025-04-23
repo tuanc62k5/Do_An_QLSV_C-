@@ -25,15 +25,6 @@ namespace QuanLyKhoa
             f.ShowDialog();
             this.Show();
         }
-
-        private void quảnLíLớpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyLop f = new QuanLyLop();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
         private void quảnLíNgànhToolStripMenuItem_Click(object sender, EventArgs e)
         {
             QuanLyNganh f = new QuanLyNganh();
@@ -169,7 +160,11 @@ namespace QuanLyKhoa
                 loadgriddata();
             }
         }
-
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            AddNew = false;
+            setEnable(true);
+        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string MaSV = txtMaSV.Text;
@@ -201,15 +196,18 @@ namespace QuanLyKhoa
             f.ShowDialog();
             this.Show();
         }
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            AddNew = false;
-            setEnable(true);
-        }
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             test f = new test();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void quảnLíLớpHànhChínhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuanLyLopHanhChinh f = new QuanLyLopHanhChinh();
             this.Hide();
             f.ShowDialog();
             this.Show();
