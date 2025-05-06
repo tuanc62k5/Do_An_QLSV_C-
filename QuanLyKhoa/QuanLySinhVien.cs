@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,12 +15,149 @@ namespace QuanLyKhoa
 {
     public partial class QuanLySinhVien : Form
     {
-        bool AddNew = false;
+        DBservices db = new DBservices();
         public QuanLySinhVien()
         {
             InitializeComponent();
+            LoadKhoa();
+            LoadKhoaHoc();
+        }
+        private void QuanLySinhVien_Load(object sender, EventArgs e)
+        {
+            dgvUsers.AutoGenerateColumns = true;
+        }
+        private void LoadKhoa()
+        {
+            string query = "SELECT * FROM tblKhoa";
+            DataTable dt = db.GetData(query);
+            cboKhoa.DataSource = dt;
+            cboKhoa.DisplayMember = "K_TenKhoa";
+            cboKhoa.ValueMember = "K_ID";
+            cboKhoa.SelectedIndex = -1;
+        }
+        private void LoadNganh(int K_ID)
+        {
+            string query = $"SELECT * FROM tblNganh WHERE K_ID = '{K_ID}'";
+            DataTable dt = db.GetData(query);
+            cboNganh.DataSource = dt;
+            cboNganh.DisplayMember = "NG_TenNganh";
+            cboNganh.ValueMember = "NG_ID";
+            cboNganh.SelectedIndex = -1;
+        }
+        private void LoadLopHanhChinh(int NG_ID)
+        {
+            string query = $"SELECT * FROM tblLopHanhChinh WHERE NG_ID = '{NG_ID}'";
+            DataTable dt = db.GetData(query);
+            cboLopHanhChinh.DataSource = dt;
+            cboLopHanhChinh.DisplayMember = "LP_TenLop";
+            cboLopHanhChinh.ValueMember = "LP_ID";
+            cboLopHanhChinh.SelectedIndex = -1;
+        }
+        private void LoadKhoaHoc()
+        {
+            string query = "SELECT * FROM tblKhoaHoc";
+            DataTable dt = db.GetData(query);
+            cboKhoaHoc.DataSource = dt;
+            cboKhoaHoc.DisplayMember = "KH_TenKhoaHoc";
+            cboKhoaHoc.ValueMember = "KH_ID";
+            cboKhoaHoc.SelectedIndex = -1;
+        }
+        private void LoadSinhVien(string query)
+        {
+            DataTable dt = db.GetData(query);
+            dgvUsers.DataSource = dt;
+        }
+        private void cboKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboKhoa.SelectedItem != null)
+            {
+                // Lấy đối tượng DataRowView từ SelectedItem
+                DataRowView selectedRow = (DataRowView)cboKhoa.SelectedItem;
+
+                // Lấy giá trị của K_ID từ DataRowView
+                int K_ID = Convert.ToInt32(selectedRow["K_ID"]);
+
+                LoadNganh(K_ID);
+
+                string query = $@"SELECT * FROM tblSinhVien WHERE LP_ID IN (
+                            SELECT LP_ID FROM tblLopHanhChinh WHERE NG_ID IN (
+                                SELECT NG_ID FROM tblNganh WHERE K_ID = {K_ID}
+                            )
+                        )";
+                LoadSinhVien(query);
+            }
+        }
+        private void cboNganh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboNganh.SelectedItem != null)
+            {
+                DataRowView selectedRow = (DataRowView)cboNganh.SelectedItem;
+                int NG_ID = Convert.ToInt32(selectedRow["NG_ID"]);
+                LoadLopHanhChinh(NG_ID);
+
+                string query = $@"SELECT * FROM tblSinhVien WHERE LP_ID IN (
+                            SELECT LP_ID FROM tblLopHanhChinh WHERE NG_ID = {NG_ID}
+                        )";
+                LoadSinhVien(query);
+            }
+        }
+        private void cboLopHanhChinh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboLopHanhChinh.SelectedItem != null)
+            {
+                DataRowView selectedRow = (DataRowView)cboLopHanhChinh.SelectedItem;
+                int LP_ID = Convert.ToInt32(selectedRow["LP_ID"]);
+                string query = $"SELECT * FROM tblSinhVien WHERE LP_ID = {LP_ID}";
+                LoadSinhVien(query);
+            }
+        }
+        private void cboKhoaHoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboKhoaHoc.SelectedItem != null)
+            {
+                DataRowView selectedRow = (DataRowView)cboKhoaHoc.SelectedItem;
+                int KH_ID = Convert.ToInt32(selectedRow["KH_ID"]);
+                string query = $"SELECT * FROM tblSinhVien WHERE KH_ID = {KH_ID}";
+                LoadSinhVien(query);
+            }
+        }
+    
+       
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            ClearForm();
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void ClearForm()
+        {
+            txtMaSV.Clear();
+            txtGioiTinh.Clear();
+            txtDiaChi.Clear();
+            txtEmail.Clear();
+            txtDienThoai.Clear();
+            timeNgaySinh.Value = DateTime.Now;
+            cboSinhVien.SelectedIndex = -1;
+            cboChucVu.SelectedIndex = -1;
+        }
         private void quảnLíKhoaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             QuanLyKhoa f = new QuanLyKhoa();
@@ -32,159 +172,9 @@ namespace QuanLyKhoa
             f.ShowDialog();
             this.Show();
         }
-        private void loadgriddata()
+        private void quảnLíLớpHànhChínhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DBservices db = new DBservices();
-            string sql = "SELECT * FROM tblSinhVien";
-            dgvUsers.DataSource = db.GetData(sql);
-            setEnable(false);
-        }
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void QuanLySinhVien_Load(object sender, EventArgs e)
-        {
-            loadgriddata();
-            timeNgaySinh.Format = DateTimePickerFormat.Custom;
-            timeNgaySinh.CustomFormat = "dd/MM/yyyy";
-            DBservices db = new DBservices();
-            cboMaKhoaHoc.DataSource = db.GetData("SELECT KH_ID, KH_TenKhoaHoc FROM tblKhoaHoc");
-            cboMaKhoaHoc.DisplayMember = "KH_TenKhoaHoc";
-            cboMaKhoaHoc.ValueMember = "KH_ID";
-            cboMaKhoaHoc.SelectedIndex = -1;
-
-            cboMaNganh.DataSource = db.GetData("SELECT NG_ID, NG_TenNganh FROM tblNganh");
-            cboMaNganh.DisplayMember = "NG_TenNganh";
-            cboMaNganh.ValueMember = "NG_ID";
-            cboMaNganh.SelectedIndex = -1;
-
-            cboMaLop.DataSource = db.GetData("SELECT LP_ID, LP_TenLop FROM tblLopHanhChinh");
-            cboMaLop.DisplayMember = "LP_TenLop";
-            cboMaLop.ValueMember = "LP_ID";
-            cboMaLop.SelectedIndex = -1;
-
-            cboMaKhoa.DataSource = db.GetData("SELECT K_ID, K_TenKhoa FROM tblKhoa");
-            cboMaKhoa.DisplayMember = "K_TenKhoa";
-            cboMaKhoa.ValueMember = "K_ID";
-            cboMaKhoa.SelectedIndex = -1;
-
-            cboMaKhoaHoc.DropDownStyle = ComboBoxStyle.DropDown;
-            cboMaNganh.DropDownStyle = ComboBoxStyle.DropDown;
-            cboMaLop.DropDownStyle = ComboBoxStyle.DropDown;
-            cboMaKhoa.DropDownStyle = ComboBoxStyle.DropDown;
-
-        }
-        private void setEnable(bool check)
-        {
-            txtMaSV.Enabled = AddNew;
-            txtTenSV.Enabled = check;
-            txtSDT.Enabled = check;
-            txtDiaChi.Enabled = check;
-            timeNgaySinh.Enabled = check;
-            txtGioiTinh.Enabled = check;
-            txtEmail.Enabled = check;
-            cboMaKhoaHoc.Enabled = check;
-            cboMaNganh.Enabled = check;
-            cboMaLop.Enabled = check;
-            cboMaKhoa.Enabled = check;
-            txtTenChucVu.Enabled = check;
-            btnAddNew.Enabled = !check;
-            btnEdit.Enabled = !check;
-            btnDelete.Enabled = !check;
-            btnSave.Enabled = check;
-            btnExit.Enabled = !check;
-        }
-        private void dgvUsers_CellEnter_1(object sender, DataGridViewCellEventArgs e)
-        {
-            int i = e.RowIndex;
-            if (i >= 0)
-            {
-                txtMaSV.Text = dgvUsers.Rows[i].Cells["SV_MaSV"].Value.ToString();
-                txtTenSV.Text = dgvUsers.Rows[i].Cells["SV_HoVaTen"].Value.ToString();
-                txtSDT.Text = dgvUsers.Rows[i].Cells["SV_DienThoai"].Value.ToString();
-                txtDiaChi.Text = dgvUsers.Rows[i].Cells["SV_DiaChi"].Value.ToString();
-                if (DateTime.TryParse(dgvUsers.Rows[i].Cells["SV_NgaySinh"].Value.ToString(), out DateTime ns))
-                {
-                    timeNgaySinh.Value = ns;
-                }
-                txtGioiTinh.Text = dgvUsers.Rows[i].Cells["SV_GioiTinh"].Value.ToString();
-                txtEmail.Text = dgvUsers.Rows[i].Cells["SV_Email"].Value.ToString();
-                cboMaLop.SelectedValue = dgvUsers.Rows[i].Cells["LP_ID"].Value.ToString();
-                cboMaKhoaHoc.SelectedValue = dgvUsers.Rows[i].Cells["KH_ID"].Value.ToString();
-            }
-        }
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnAddNew_Click(object sender, EventArgs e)
-        {
-            txtMaSV.Text = "";
-            txtTenSV.Text = "";
-            txtSDT.Text = "";
-            txtDiaChi.Text = "";
-            timeNgaySinh.Text = "";
-            txtGioiTinh.Text = "";
-            txtEmail.Text = "";
-            cboMaLop.Text = "";
-            cboMaKhoaHoc.Text = "";
-            AddNew = true;
-            setEnable(true);
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            string msv = txtMaSV.Text;
-            string tsv = txtTenSV.Text;
-            string sdt = txtSDT.Text;
-            string dc = txtDiaChi.Text;
-            string ns = timeNgaySinh.Value.ToString("yyyy-MM-dd");
-            string gt = txtGioiTinh.Text;
-            string em = txtEmail.Text;
-            string ml = cboMaLop.SelectedValue?.ToString() ?? "";
-            string mkh = cboMaKhoaHoc.SelectedValue?.ToString() ?? "";
-            DBservices db = new DBservices();
-            if (AddNew)
-            {
-                string sql = string.Format("INSERT INTO tblSinhVien (SV_MaSV, SV_TenSV, SV_DienThoai, SV_DiaChi, SV_NgaySinh, SV_GioiTinh, SV_Email, LP_ID, KH_ID) VALUES " + "(N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}', N'{6}', N'{7}', N'{8}')", msv, tsv, sdt, dc, ns, gt, em, ml, mkh);
-                db.runQuery(sql);
-                AddNew = false;
-                loadgriddata();
-            }
-            else
-            {
-                string sql = string.Format("UPDATE tblSinhVien SET SV_TenSV=N'{1}', SV_DienThoai=N'{2}', SV_DiaChi=N'{3}', SV_NgaySinh=N'{4}', SV_GioiTinh=N'{5}', SV_Email=N'{6}', LP_ID=N'{7}', KH_ID=N'{8}' WHERE SV_MaSV=N'{0}'", msv, tsv, sdt, dc, ns, gt, em, ml, mkh);
-                db.runQuery(sql);
-                loadgriddata();
-            }
-        }
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            AddNew = false;
-            setEnable(true);
-        }
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            string MaSV = txtMaSV.Text;
-            string sql = string.Format("DELETE FROM tblSinhVien WHERE SV_MaSV=N'{0}'", MaSV);
-            DBservices db = new DBservices();
-            db.runQuery(sql);
-            loadgriddata();
-        }
-
-        private void quảnLíHọcPhầnToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            QuanLyHocPhan f = new QuanLyHocPhan();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
-
-        private void quảnLíLớpHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyLopHocPhan f = new QuanLyLopHocPhan();
+            QuanLyLopHanhChinh f = new QuanLyLopHanhChinh();
             this.Hide();
             f.ShowDialog();
             this.Show();
@@ -196,21 +186,28 @@ namespace QuanLyKhoa
             f.ShowDialog();
             this.Show();
         }
-
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        private void quảnLíHọcPhầnToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            test f = new test();
+            QuanLyHocPhan f = new QuanLyHocPhan();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+        private void quảnLíLớpHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuanLyLopHocPhan f = new QuanLyLopHocPhan();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+        private void quảnLíNămHọcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QuanLyNamHoc f = new QuanLyNamHoc();
             this.Hide();
             f.ShowDialog();
             this.Show();
         }
 
-        private void quảnLíLớpHànhChínhToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            QuanLyLopHanhChinh f = new QuanLyLopHanhChinh();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
-        }
+
     }
 }

@@ -176,10 +176,23 @@ namespace QuanLyKhoa
             string id = cboHocPhan.SelectedValue?.ToString();
             if (string.IsNullOrEmpty(id)) return;
 
-            string sql = $"DELETE FROM tblHocPhan WHERE HP_ID=N'{id}'";
-            db.runQuery(sql);
+            string sql1 = $"SELECT LHP_ID FROM tblLopHocPhan WHERE HP_ID = N'{id}'";
+            DataTable dtLHP = db.GetData(sql1);
 
-            if (int.TryParse(cboHocPhan.SelectedValue.ToString(), out int NG_ID))
+            foreach (DataRow row in dtLHP.Rows)
+            {
+                string LHP_ID = row["LHP_ID"].ToString();
+                string sql2 = $"DELETE FROM tblDiem WHERE LHP_ID = N'{LHP_ID}'";
+                db.runQuery(sql2);
+            }
+
+            string sql3 = $"DELETE FROM tblLopHocPhan WHERE HP_ID = N'{id}'";
+            db.runQuery(sql3);
+
+            string sql4 = $"DELETE FROM tblHocPhan WHERE HP_ID = N'{id}'";
+            db.runQuery(sql4);
+
+            if (int.TryParse(cboNganh.SelectedValue.ToString(), out int NG_ID))
                 LoadHocPhanTheoNganh(NG_ID);
 
             dgvUsers.DataSource = null;
