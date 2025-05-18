@@ -13,130 +13,120 @@ namespace QuanLyKhoa
 {
     public partial class QuanLyKhoaHoc : Form
     {
-        DBservices db = new DBservices();
         private bool AddNew = false;
         public QuanLyKhoaHoc()
         {
             InitializeComponent();
         }
-
         private void QuanLyKhoaHoc_Load(object sender, EventArgs e)
         {
-            LayKhoaHoc();
-            SelectedKhoaHoc();
-            cboKhoaHoc.SelectedIndexChanged += cboKhoaHoc_SelectedIndexChanged;
+            LayDuLieu();
         }
-        private void LayKhoaHoc()
+        private void setEnable(bool enable)
         {
+            txtKhoaHoc.Enabled = enable;
+            txtNamBatDau.Enabled = enable;
+            txtNamKetThuc.Enabled = enable;
+            btnSave.Enabled = enable;
+            btnAddNew.Enabled = !enable;
+            btnEdit.Enabled = !enable;
+            btnDelete.Enabled = !enable;
+            btnExit.Enabled = !enable;
+            btnLamMoi.Enabled = !enable;
+            btnTimKiem.Enabled = !enable;
+        }
+        private void LayDuLieu()
+        {
+            DBservices db = new DBservices();
             string sql = "SELECT * FROM tblKhoaHoc";
-            DataTable dt = db.GetData(sql);
-
-            DataRow row = dt.NewRow();
-            row["KH_ID"] = 0;
-            row["KH_TenKhoaHoc"] = "Tất cả Khóa học";
-            dt.Rows.InsertAt(row, 0);
-
-            cboKhoaHoc.DisplayMember = "KH_TenKhoaHoc";
-            cboKhoaHoc.ValueMember = "KH_ID";
-            cboKhoaHoc.DataSource = dt;
-            cboKhoaHoc.SelectedIndex = 0;
-        }
-        private void SelectedKhoaHoc()
-        {
-            if (cboKhoaHoc.SelectedValue == null) return;
-
-            if (int.TryParse(cboKhoaHoc.SelectedValue.ToString(), out int id))
-            {
-                string sql = string.Format(id == 0 ? "SELECT * FROM tblKhoaHoc" : "SELECT * FROM tblKhoaHoc WHERE KH_ID = {0}", id);
-                dgvUsers.DataSource = db.GetData(sql);
-            }
-        }
-        private void cboKhoaHoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() =>
-            {
-                SelectedKhoaHoc();
-            }));
-        }
-        private void setEnable(bool check)
-        {
-            cboKhoaHoc.Enabled = true;
-            txtNamBatDau.Enabled = check;
-            txtNamKetThuc.Enabled = check;
-            btnAddNew.Enabled = !check;
-            btnEdit.Enabled = !check;
-            btnDelete.Enabled = !check;
-            btnSave.Enabled = check;
-            btnExit.Enabled = !check;
+            dgvUsers.DataSource = db.GetData(sql);
+            setEnable(false);
         }
         private void dgvUsers_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             int i = e.RowIndex;
-            if (i >= 0 && dgvUsers.Rows[i].Cells["KH_ID"].Value != null)
+            if (i >= 0)
             {
-                int rowKhoaHocID = Convert.ToInt32(dgvUsers.Rows[i].Cells["KH_ID"].Value);
-                if (cboKhoaHoc.SelectedValue != null && int.TryParse(cboKhoaHoc.SelectedValue.ToString(), out int selectKhoaHocID) && selectKhoaHocID != 0)
-                {
-                    cboKhoaHoc.SelectedValue = rowKhoaHocID;
-                }
+                txtKhoaHoc.Text = dgvUsers.Rows[i].Cells["KH_TenKhoaHoc"].Value.ToString();
                 txtNamBatDau.Text = dgvUsers.Rows[i].Cells["KH_NamBatDau"].Value.ToString();
                 txtNamKetThuc.Text = dgvUsers.Rows[i].Cells["KH_NamKetThuc"].Value.ToString();
             }
         }
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            cboKhoaHoc.DataSource = null;
-            cboKhoaHoc.Text = "";
-            cboKhoaHoc.DropDownStyle = ComboBoxStyle.DropDown;
-            txtNamBatDau.Text = "";
-            txtNamKetThuc.Text = "";
             AddNew = true;
             setEnable(true);
+            txtKhoaHoc.Clear();
+            txtNamBatDau.Clear();
+            txtNamKetThuc.Clear();
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string tkh = cboKhoaHoc.Text.Trim();
-            string nbd = txtNamBatDau.Text.Trim();
-            string nkt = txtNamKetThuc.Text.Trim();
-            DBservices db = new DBservices();
+            string kh = txtKhoaHoc.Text;
+            string nbd = txtNamBatDau.Text;
+            string nkt = txtNamKetThuc.Text;
+            if (string.IsNullOrEmpty(kh))
+            {
+                MessageBox.Show("Không để trống thông tin!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtKhoaHoc.Focus();
+                return;
+            }
             if (AddNew)
             {
-                string sql = string.Format("INSERT INTO tblKhoaHoc (KH_TenKhoaHoc, KH_NamBatDau, KH_NamKetThuc) " + "VALUES (N'{0}', N'{1}', N'{2}')", tkh, nbd, nkt);
+                string sql = string.Format("INSERT INTO tblKhoaHoc (KH_TenKhoaHoc, KH_NamBatDau, KH_NamKetThuc) VALUES " +
+                    "(N'{0}', N'{1}', N'{2}')", kh, nbd, nkt);
+                DBservices db = new DBservices();
                 db.runQuery(sql);
-                AddNew = false;
+                LayDuLieu();
             }
             else
             {
-                string id = cboKhoaHoc.SelectedValue?.ToString() ?? "";
-                string sql = string.Format("UPDATE tblKhoaHoc SET KH_TenKhoaHoc=N'{1}', KH_NamBatDau=N'{2}', KH_NamKetThuc=N'{3}'" + "WHERE KH_ID='{0}'", id, tkh, nbd, nkt);
-                db.runQuery(sql);
+                if (dgvUsers.CurrentRow != null)
+                {
+                    int id = Convert.ToInt32(dgvUsers.CurrentRow.Cells["KH_ID"].Value);
+                    string sql = string.Format("UPDATE tblKhoaHoc SET " +
+                        "KH_TenKhoaHoc=N'{0}'," +
+                        "KH_NamBatDau=N'{1}'," +
+                        "KH_NamKetThuc=N'{2}' WHERE KH_ID={3}", kh, nbd, nkt, id);
+                    DBservices db = new DBservices();
+                    db.runQuery(sql);
+                    LayDuLieu();
+                }
             }
-            AddNew = false;
-            LayKhoaHoc();
-            cboKhoaHoc.SelectedIndex = 0;
-            SelectedKhoaHoc();
-            setEnable(false);
         }
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
             AddNew = false;
-            cboKhoaHoc.DropDownStyle = ComboBoxStyle.DropDownList;
-            LayKhoaHoc();
             setEnable(true);
         }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string id = cboKhoaHoc.SelectedValue.ToString();
-            string sql = string.Format("DELETE FROM tblKhoaHoc WHERE KH_ID=N'{0}'", id);
+            int id = Convert.ToInt32(dgvUsers.CurrentRow.Cells["KH_ID"].Value);
+            string sql = string.Format("DELETE FROM tblKhoaHoc WHERE KH_ID={0}", id);
+            DBservices db = new DBservices();
             db.runQuery(sql);
-            LayKhoaHoc();
-            cboKhoaHoc.SelectedIndex = 0;
-            SelectedKhoaHoc();
-            setEnable(false);
+            LayDuLieu();
         }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            LayDuLieu();
+            txtTimKiem.Clear();
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string TenKhoaHoc = txtTimKiem.Text.Trim();
+            string sql = string.Format("SELECT * FROM tblKhoaHoc WHERE KH_TenKhoaHoc = N'{0}'", TenKhoaHoc);
+            DBservices db = new DBservices();
+            dgvUsers.DataSource = db.GetData(sql);
         }
     }
 }

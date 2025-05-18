@@ -23,6 +23,8 @@ namespace QuanLyKhoa
         private void QuanLyLopHocPhan_Load(object sender, EventArgs e)
         {
             LoadHocPhan();
+            LoadNamHoc();
+            LoadHocKy();
             setEnable(false);
 
             timeNgayBatDau.Format = DateTimePickerFormat.Custom;
@@ -72,6 +74,23 @@ namespace QuanLyKhoa
                 dgvUsers.DataSource = dt;
             }));
             if (int.TryParse(cboHocPhan.SelectedValue?.ToString(), out int currentHocPhan) && currentHocPhan == 0) return;
+        }
+        private void LoadNamHoc()
+        {
+            string sql = "SELECT * FROM tblNamHoc";
+            DataTable dt = db.GetData(sql);
+            cboNamHoc.DataSource = dt;
+            cboNamHoc.DisplayMember = "NH_TenNamHoc";
+            cboNamHoc.ValueMember = "NH_ID";
+        }
+        private void LoadHocKy()
+        {
+            string sql = "SELECT * FROM tblHocKy";
+            DataTable dt = db.GetData(sql);
+
+            cboHocKy.DataSource = dt;
+            cboHocKy.DisplayMember = "HK_TenHocKy";
+            cboHocKy.ValueMember = "HK_ID"; 
         }
         private void cboHocPhan_SelectedIndexChanged(object sender, EventArgs e)
         {

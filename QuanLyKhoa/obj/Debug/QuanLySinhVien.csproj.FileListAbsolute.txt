@@ -13,6 +13,7 @@ D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Qu
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyHocPhan.resources
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyLopHocPhan.resources
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyKhoaHoc.resources
-D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.test.resources
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyLopHanhChinh.resources
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyNamHoc.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.GiaoDien.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyDiem.resources

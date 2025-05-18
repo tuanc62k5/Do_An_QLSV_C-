@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.quảnLíToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.quảnLíToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.chứcNăngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,8 +46,7 @@
             this.quảnLíNămHọcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLíĐiểmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chứcNăngToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.đổiMậtKhẩuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thôngTinChiTiếtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,16 +59,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.cboKhoa = new System.Windows.Forms.ComboBox();
             this.cboNganh = new System.Windows.Forms.ComboBox();
             this.cboLopHanhChinh = new System.Windows.Forms.ComboBox();
             this.cboKhoaHoc = new System.Windows.Forms.ComboBox();
-            this.cboChucVu = new System.Windows.Forms.ComboBox();
             this.txtMaSV = new System.Windows.Forms.TextBox();
             this.timeNgaySinh = new System.Windows.Forms.DateTimePicker();
             this.txtGioiTinh = new System.Windows.Forms.TextBox();
-            this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtDienThoai = new System.Windows.Forms.TextBox();
             this.btnAddNew = new System.Windows.Forms.Button();
@@ -80,7 +75,9 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.cboSinhVien = new System.Windows.Forms.ComboBox();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
+            this.txtSinhVien = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.menuStrip2.SuspendLayout();
@@ -101,15 +98,6 @@
             this.quảnLíToolStripMenuItem.Name = "quảnLíToolStripMenuItem";
             this.quảnLíToolStripMenuItem.Size = new System.Drawing.Size(128, 24);
             this.quảnLíToolStripMenuItem.Text = "Quản Lí";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Location = new System.Drawing.Point(0, 36);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1176, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // contextMenuStrip2
             // 
@@ -135,6 +123,7 @@
             // 
             // menuStrip2
             // 
+            this.menuStrip2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.menuStrip2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -146,6 +135,7 @@
             this.menuStrip2.Size = new System.Drawing.Size(1176, 36);
             this.menuStrip2.TabIndex = 3;
             this.menuStrip2.Text = "menuStrip2";
+            this.menuStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip2_ItemClicked);
             // 
             // quảnLíToolStripMenuItem2
             // 
@@ -223,34 +213,30 @@
             this.quảnLíĐiểmToolStripMenuItem.Name = "quảnLíĐiểmToolStripMenuItem";
             this.quảnLíĐiểmToolStripMenuItem.Size = new System.Drawing.Size(280, 32);
             this.quảnLíĐiểmToolStripMenuItem.Text = "Quản lí điểm";
+            this.quảnLíĐiểmToolStripMenuItem.Click += new System.EventHandler(this.quảnLíĐiểmToolStripMenuItem_Click);
             // 
             // chứcNăngToolStripMenuItem1
             // 
             this.chứcNăngToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thoátToolStripMenuItem,
-            this.đổiMậtKhẩuToolStripMenuItem,
+            this.thôngTinChiTiếtToolStripMenuItem,
             this.đăngXuấtToolStripMenuItem});
             this.chứcNăngToolStripMenuItem1.Name = "chứcNăngToolStripMenuItem1";
             this.chứcNăngToolStripMenuItem1.Size = new System.Drawing.Size(110, 32);
             this.chứcNăngToolStripMenuItem1.Text = "Tài Khoản";
             // 
-            // thoátToolStripMenuItem
+            // thôngTinChiTiếtToolStripMenuItem
             // 
-            this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
-            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(246, 32);
-            this.thoátToolStripMenuItem.Text = "Thông tin chi tiết";
-            // 
-            // đổiMậtKhẩuToolStripMenuItem
-            // 
-            this.đổiMậtKhẩuToolStripMenuItem.Name = "đổiMậtKhẩuToolStripMenuItem";
-            this.đổiMậtKhẩuToolStripMenuItem.Size = new System.Drawing.Size(246, 32);
-            this.đổiMậtKhẩuToolStripMenuItem.Text = "Đổi mật khẩu";
+            this.thôngTinChiTiếtToolStripMenuItem.Name = "thôngTinChiTiếtToolStripMenuItem";
+            this.thôngTinChiTiếtToolStripMenuItem.Size = new System.Drawing.Size(246, 32);
+            this.thôngTinChiTiếtToolStripMenuItem.Text = "Thông tin chi tiết";
+            this.thôngTinChiTiếtToolStripMenuItem.Click += new System.EventHandler(this.thôngTinChiTiếtToolStripMenuItem_Click);
             // 
             // đăngXuấtToolStripMenuItem
             // 
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
             this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(246, 32);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
+            this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -296,7 +282,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(33, 125);
+            this.label6.Location = new System.Drawing.Point(339, 125);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 20);
             this.label6.TabIndex = 9;
@@ -326,7 +312,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(338, 125);
+            this.label8.Location = new System.Drawing.Point(35, 125);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 20);
             this.label8.TabIndex = 12;
@@ -361,16 +347,6 @@
             this.label11.Size = new System.Drawing.Size(66, 20);
             this.label11.TabIndex = 15;
             this.label11.Text = "Địa chỉ:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(889, 167);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(75, 20);
-            this.label12.TabIndex = 16;
-            this.label12.Text = "Chức vụ:";
             // 
             // cboKhoa
             // 
@@ -408,17 +384,9 @@
             this.cboKhoaHoc.TabIndex = 20;
             this.cboKhoaHoc.SelectedIndexChanged += new System.EventHandler(this.cboKhoaHoc_SelectedIndexChanged);
             // 
-            // cboChucVu
-            // 
-            this.cboChucVu.FormattingEnabled = true;
-            this.cboChucVu.Location = new System.Drawing.Point(981, 163);
-            this.cboChucVu.Name = "cboChucVu";
-            this.cboChucVu.Size = new System.Drawing.Size(152, 24);
-            this.cboChucVu.TabIndex = 22;
-            // 
             // txtMaSV
             // 
-            this.txtMaSV.Location = new System.Drawing.Point(419, 121);
+            this.txtMaSV.Location = new System.Drawing.Point(118, 123);
             this.txtMaSV.Name = "txtMaSV";
             this.txtMaSV.Size = new System.Drawing.Size(214, 22);
             this.txtMaSV.TabIndex = 23;
@@ -438,13 +406,6 @@
             this.txtGioiTinh.Size = new System.Drawing.Size(124, 22);
             this.txtGioiTinh.TabIndex = 25;
             // 
-            // txtDiaChi
-            // 
-            this.txtDiaChi.Location = new System.Drawing.Point(118, 165);
-            this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(189, 22);
-            this.txtDiaChi.TabIndex = 26;
-            // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(389, 165);
@@ -461,57 +422,62 @@
             // 
             // btnAddNew
             // 
+            this.btnAddNew.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAddNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNew.Location = new System.Drawing.Point(331, 215);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(80, 64);
             this.btnAddNew.TabIndex = 29;
             this.btnAddNew.Text = "Thêm";
-            this.btnAddNew.UseVisualStyleBackColor = true;
+            this.btnAddNew.UseVisualStyleBackColor = false;
             this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // btnEdit
             // 
+            this.btnEdit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Location = new System.Drawing.Point(442, 215);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(80, 64);
             this.btnEdit.TabIndex = 30;
             this.btnEdit.Text = "Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
+            this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(553, 215);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(80, 64);
             this.btnDelete.TabIndex = 31;
             this.btnDelete.Text = "Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
+            this.btnSave.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(661, 215);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 64);
             this.btnSave.TabIndex = 32;
             this.btnSave.Text = "Lưu";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Location = new System.Drawing.Point(772, 215);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(80, 64);
             this.btnExit.TabIndex = 33;
             this.btnExit.Text = "Thoát";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // panel1
@@ -534,20 +500,38 @@
             this.dgvUsers.Size = new System.Drawing.Size(1176, 357);
             this.dgvUsers.TabIndex = 0;
             // 
-            // cboSinhVien
+            // txtDiaChi
             // 
-            this.cboSinhVien.FormattingEnabled = true;
-            this.cboSinhVien.Location = new System.Drawing.Point(128, 121);
-            this.cboSinhVien.Name = "cboSinhVien";
-            this.cboSinhVien.Size = new System.Drawing.Size(179, 24);
-            this.cboSinhVien.TabIndex = 35;
+            this.txtDiaChi.Location = new System.Drawing.Point(118, 165);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(189, 22);
+            this.txtDiaChi.TabIndex = 26;
+            // 
+            // txtSinhVien
+            // 
+            this.txtSinhVien.Location = new System.Drawing.Point(427, 123);
+            this.txtSinhVien.Name = "txtSinhVien";
+            this.txtSinhVien.Size = new System.Drawing.Size(206, 22);
+            this.txtSinhVien.TabIndex = 35;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(499, 36);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(189, 29);
+            this.label12.TabIndex = 36;
+            this.label12.Text = "Quản lí sinh viên";
             // 
             // QuanLySinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 669);
-            this.Controls.Add(this.cboSinhVien);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.txtSinhVien);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnSave);
@@ -560,12 +544,10 @@
             this.Controls.Add(this.txtGioiTinh);
             this.Controls.Add(this.timeNgaySinh);
             this.Controls.Add(this.txtMaSV);
-            this.Controls.Add(this.cboChucVu);
             this.Controls.Add(this.cboKhoaHoc);
             this.Controls.Add(this.cboLopHanhChinh);
             this.Controls.Add(this.cboNganh);
             this.Controls.Add(this.cboKhoa);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -577,9 +559,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.menuStrip2);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "QuanLySinhVien";
             this.Text = "QuanLySinhVien";
             this.Load += new System.EventHandler(this.QuanLySinhVien_Load);
@@ -598,7 +578,6 @@
 
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem quảnLíToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem quảnLíToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem chứcNăngToolStripMenuItem;
@@ -607,8 +586,6 @@
         private System.Windows.Forms.ToolStripMenuItem quảnLíKhoaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLíNgànhToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chứcNăngToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem đổiMậtKhẩuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem họcPhầnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLíHọcPhầnToolStripMenuItem1;
@@ -628,16 +605,13 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cboKhoa;
         private System.Windows.Forms.ComboBox cboNganh;
         private System.Windows.Forms.ComboBox cboLopHanhChinh;
         private System.Windows.Forms.ComboBox cboKhoaHoc;
-        private System.Windows.Forms.ComboBox cboChucVu;
         private System.Windows.Forms.TextBox txtMaSV;
         private System.Windows.Forms.DateTimePicker timeNgaySinh;
         private System.Windows.Forms.TextBox txtGioiTinh;
-        private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtDienThoai;
         private System.Windows.Forms.Button btnAddNew;
@@ -647,6 +621,9 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvUsers;
-        private System.Windows.Forms.ComboBox cboSinhVien;
+        private System.Windows.Forms.TextBox txtDiaChi;
+        private System.Windows.Forms.TextBox txtSinhVien;
+        private System.Windows.Forms.ToolStripMenuItem thôngTinChiTiếtToolStripMenuItem;
+        private System.Windows.Forms.Label label12;
     }
 }

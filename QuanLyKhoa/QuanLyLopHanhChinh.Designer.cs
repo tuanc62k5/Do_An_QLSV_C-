@@ -41,6 +41,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +50,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(468, 27);
+            this.label2.Location = new System.Drawing.Point(465, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 20);
             this.label2.TabIndex = 6;
@@ -59,7 +60,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(43, 27);
+            this.label1.Location = new System.Drawing.Point(40, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 20);
             this.label1.TabIndex = 5;
@@ -69,7 +70,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(43, 76);
+            this.label3.Location = new System.Drawing.Point(40, 98);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 20);
             this.label3.TabIndex = 7;
@@ -78,7 +79,7 @@
             // cboNganh
             // 
             this.cboNganh.FormattingEnabled = true;
-            this.cboNganh.Location = new System.Drawing.Point(122, 23);
+            this.cboNganh.Location = new System.Drawing.Point(119, 45);
             this.cboNganh.Name = "cboNganh";
             this.cboNganh.Size = new System.Drawing.Size(301, 24);
             this.cboNganh.TabIndex = 8;
@@ -87,7 +88,7 @@
             // cboLop
             // 
             this.cboLop.FormattingEnabled = true;
-            this.cboLop.Location = new System.Drawing.Point(531, 23);
+            this.cboLop.Location = new System.Drawing.Point(528, 45);
             this.cboLop.Name = "cboLop";
             this.cboLop.Size = new System.Drawing.Size(280, 24);
             this.cboLop.TabIndex = 9;
@@ -95,7 +96,7 @@
             // 
             // txtChuNhiem
             // 
-            this.txtChuNhiem.Location = new System.Drawing.Point(148, 76);
+            this.txtChuNhiem.Location = new System.Drawing.Point(145, 98);
             this.txtChuNhiem.Name = "txtChuNhiem";
             this.txtChuNhiem.Size = new System.Drawing.Size(275, 22);
             this.txtChuNhiem.TabIndex = 10;
@@ -103,7 +104,7 @@
             // btnAddNew
             // 
             this.btnAddNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNew.Location = new System.Drawing.Point(181, 135);
+            this.btnAddNew.Location = new System.Drawing.Point(181, 146);
             this.btnAddNew.Name = "btnAddNew";
             this.btnAddNew.Size = new System.Drawing.Size(87, 61);
             this.btnAddNew.TabIndex = 11;
@@ -114,7 +115,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(514, 135);
+            this.btnSave.Location = new System.Drawing.Point(514, 146);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(87, 61);
             this.btnSave.TabIndex = 12;
@@ -125,7 +126,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(403, 135);
+            this.btnDelete.Location = new System.Drawing.Point(403, 146);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(87, 61);
             this.btnDelete.TabIndex = 13;
@@ -136,7 +137,7 @@
             // btnEdit
             // 
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(293, 135);
+            this.btnEdit.Location = new System.Drawing.Point(293, 146);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(87, 61);
             this.btnEdit.TabIndex = 14;
@@ -147,7 +148,7 @@
             // btnExit
             // 
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(624, 135);
+            this.btnExit.Location = new System.Drawing.Point(624, 146);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(87, 61);
             this.btnExit.TabIndex = 15;
@@ -178,11 +179,23 @@
             this.dgvUsers.TabIndex = 0;
             this.dgvUsers.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellEnter);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Red;
+            this.label4.Location = new System.Drawing.Point(304, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(250, 29);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Quản lí lớp hành chính";
+            // 
             // QuanLyLopHanhChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 600);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnEdit);
@@ -219,5 +232,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dgvUsers;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -12,128 +12,116 @@ namespace QuanLyKhoa
 {
     public partial class QuanLyNamHoc : Form
     {
-        DBservices db = new DBservices();
         private bool AddNew = false;
         public QuanLyNamHoc()
         {
             InitializeComponent();
         }
-
         private void QuanLyNamHoc_Load(object sender, EventArgs e)
         {
-            LayNamHoc();
-            SelectedNamHoc();
-            cboNamHoc.SelectedIndexChanged += cboNamHoc_SelectedIndexChanged;
+            LayDuLieu();
         }
-        private void LayNamHoc()
+       
+        private void setEnable(bool enable)
         {
+            txtNamHoc.Enabled = enable;
+            txtMoTa.Enabled = enable;
+            btnSave.Enabled = enable;
+            btnAddNew.Enabled = !enable;
+            btnEdit.Enabled = !enable;
+            btnDelete.Enabled = !enable;
+            btnExit.Enabled = !enable;
+            btnLamMoi.Enabled = !enable;
+            btnTimKiem.Enabled = !enable;
+        }
+        private void LayDuLieu()
+        {
+            DBservices db = new DBservices();
             string sql = "SELECT * FROM tblNamHoc";
-            DataTable dt = db.GetData(sql);
+            dgvUsers.DataSource = db.GetData(sql);
+            setEnable(false);
+        }
 
-            DataRow row = dt.NewRow();
-            row["NH_ID"] = 0;
-            row["NH_TenNamHoc"] = "Tất cả Năm Học";
-            dt.Rows.InsertAt(row, 0);
-
-            cboNamHoc.DisplayMember = "NH_TenNamHoc";
-            cboNamHoc.ValueMember = "NH_ID";
-            cboNamHoc.DataSource = dt;
-            cboNamHoc.SelectedIndex = 0;
-        }
-        private void SelectedNamHoc()
-        {
-            if (cboNamHoc.SelectedValue == null) return;
-
-            if (int.TryParse(cboNamHoc.SelectedValue.ToString(), out int id))
-            {
-                string sql = string.Format(id == 0 ? "SELECT * FROM tblNamHoc" : "SELECT * FROM tblNamHoc WHERE NH_ID = {0}", id);
-                dgvUsers.DataSource = db.GetData(sql);
-            }
-        }
-        private void cboNamHoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.BeginInvoke(new Action(() =>
-            {
-                SelectedNamHoc();
-            }));
-        }
-        private void setEnable(bool check)
-        {
-            cboNamHoc.Enabled = true;
-            txtMoTa.Enabled = check;
-            btnAddNew.Enabled = !check;
-            btnEdit.Enabled = !check;
-            btnDelete.Enabled = !check;
-            btnSave.Enabled = check;
-            btnExit.Enabled = !check;
-        }
         private void dgvUsers_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             int i = e.RowIndex;
-            if (i >= 0 && dgvUsers.Rows[i].Cells["NH_ID"].Value != null)
+            if (i >= 0)
             {
-                int rowNamHocID = Convert.ToInt32(dgvUsers.Rows[i].Cells["NH_ID"].Value);
-                if (cboNamHoc.SelectedValue != null && int.TryParse(cboNamHoc.SelectedValue.ToString(), out int selectNamHocID) && selectNamHocID != 0)
-                {
-                    cboNamHoc.SelectedValue = rowNamHocID;
-                }
+                txtNamHoc.Text = dgvUsers.Rows[i].Cells["NH_TenNamHoc"].Value.ToString();
                 txtMoTa.Text = dgvUsers.Rows[i].Cells["NH_MoTa"].Value.ToString();
             }
         }
+
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            cboNamHoc.DataSource = null;
-            cboNamHoc.Text = "";
-            cboNamHoc.DropDownStyle = ComboBoxStyle.DropDown;
-            txtMoTa.Text = "";
             AddNew = true;
             setEnable(true);
+            txtNamHoc.Clear();
+            txtMoTa.Clear();
         }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string nh = cboNamHoc.Text.Trim();
-            string mt = txtMoTa.Text.Trim();
-            DBservices db = new DBservices();
+            string nh = txtNamHoc.Text;
+            string mt = txtMoTa.Text;
+            if (string.IsNullOrEmpty(nh))
+            {
+                MessageBox.Show("Không để trống thông tin!", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNamHoc.Focus();
+                return;
+            }
             if (AddNew)
             {
-                string sql = string.Format("INSERT INTO tblNamHoc (NH_TenNamHoc, NH_MoTa) " + "VALUES (N'{0}', N'{1}')", nh, mt);
+                string sql = string.Format("INSERT INTO tblNamHoc (NH_TenNamHoc, NH_MoTa) VALUES " +
+                    "(N'{0}', N'{1}')", nh, mt);
+                DBservices db = new DBservices();
                 db.runQuery(sql);
-                AddNew = false;
+                LayDuLieu();
             }
             else
             {
-                string id = cboNamHoc.SelectedValue?.ToString() ?? "";
-                string sql = string.Format("UPDATE tblNamHoc SET NH_TenNamHoc=N'{1}', NH_MoTa=N'{2}'" + "WHERE NH_ID='{0}'", id, nh, mt);
-                db.runQuery(sql);
+                if (dgvUsers.CurrentRow != null)
+                {
+                    int id = Convert.ToInt32(dgvUsers.CurrentRow.Cells["NH_ID"].Value);
+                    string sql = string.Format("UPDATE tblNamHoc SET " +
+                        "NH_TenNamHoc=N'{0}'," +
+                        "NH_MoTa=N'{1}' WHERE NH_ID={2}", nh, mt, id);
+                    DBservices db = new DBservices();
+                    db.runQuery(sql);
+                    LayDuLieu();
+                }
             }
-            AddNew = false;
-            LayNamHoc();
-            cboNamHoc.SelectedIndex = 0;
-            SelectedNamHoc();
-            setEnable(false);
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
             AddNew = false;
-            cboNamHoc.DropDownStyle = ComboBoxStyle.DropDownList;
-            LayNamHoc();
             setEnable(true);
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string id = cboNamHoc.SelectedValue.ToString();
-            string sql = string.Format("DELETE FROM tblNamHoc WHERE NH_ID=N'{0}'", id);
+            int id = Convert.ToInt32(dgvUsers.CurrentRow.Cells["NH_ID"].Value);
+            string sql = string.Format("DELETE FROM tblNamHoc WHERE NH_ID={0}", id);
+            DBservices db = new DBservices();
             db.runQuery(sql);
-            LayNamHoc();
-            cboNamHoc.SelectedIndex = 0;
-            SelectedNamHoc();
-            setEnable(false);
+            LayDuLieu();
         }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            LayDuLieu();
+            txtTimKiem.Clear();
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string TenNamHoc = txtTimKiem.Text.Trim();
+            string sql = string.Format("SELECT * FROM tblNamHoc WHERE NH_TenNamHoc = N'{0}'", TenNamHoc);
+            DBservices db = new DBservices();
+            dgvUsers.DataSource = db.GetData(sql);
         }
     }
 }

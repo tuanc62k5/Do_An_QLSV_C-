@@ -16,7 +16,7 @@ namespace QuanLyKhoa
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuanLySinhVien());
+            Application.Run(new QuanLyKhoaHoc());
         }
     }
 }
