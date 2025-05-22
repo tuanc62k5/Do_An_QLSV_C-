@@ -65,6 +65,7 @@
             this.label1.Size = new System.Drawing.Size(52, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Khoa:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -282,6 +283,7 @@
             this.txtKhoa.Name = "txtKhoa";
             this.txtKhoa.Size = new System.Drawing.Size(294, 35);
             this.txtKhoa.TabIndex = 30;
+            this.txtKhoa.TextChanged += new System.EventHandler(this.txtKhoa_TextChanged);
             // 
             // QuanLyKhoa
             // 

@@ -140,5 +140,15 @@ namespace QuanLyKhoa
             DBservices db = new DBservices();
             dgvUsers.DataSource = db.GetData(sql);
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtKhoa_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

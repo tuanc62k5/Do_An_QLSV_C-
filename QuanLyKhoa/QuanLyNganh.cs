@@ -49,7 +49,9 @@ namespace QuanLyKhoa
                     "SELECT NG_ID, NG_TenNganh, NG_SoTinChi, NG_MoTa, K_TenKhoa, NG.K_ID " +
                     "FROM tblNganh NG JOIN tblKhoa K ON NG.K_ID = K.K_ID " +
                     "WHERE NG.K_ID = {0}", HienThiKhoaID);
-                dgvUsers.DataSource = db.GetData(sql);
+                this.BeginInvoke((MethodInvoker)delegate {
+                    dgvUsers.DataSource = db.GetData(sql);
+                });
             }
         }
         private void setEnable(bool enable)
@@ -74,7 +76,7 @@ namespace QuanLyKhoa
                 txtNganh.Text = dgvUsers.Rows[i].Cells["NG_TenNganh"].Value.ToString();
                 txtSoTinChi.Text = dgvUsers.Rows[i].Cells["NG_SoTinChi"].Value.ToString();
                 txtMoTa.Text = dgvUsers.Rows[i].Cells["NG_MoTa"].Value.ToString();
-                cboKhoa.SelectedValue = dgvUsers.Rows[i].Cells["K_ID"].Value;
+
             }
         }
         private void btnAddNew_Click(object sender, EventArgs e)

@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyKhoa.Linq;
 
 namespace QuanLyKhoa
 {
@@ -279,5 +280,61 @@ namespace QuanLyKhoa
             this.Show();
         }
 
+
+        private void qLKhoaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            QLKhoa f = new QLKhoa();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void qLNgànhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QLNganh f = new QLNganh();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void qLLớpHànhChínhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QLLopHanhChinh f = new QLLopHanhChinh();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void qLHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QLHocPhan f = new QLHocPhan();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void qLKhóaHọcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QLKhoaHoc f = new QLKhoaHoc();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void qLNămHọcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QLNamHoc f = new QLNamHoc();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
+
+        private void qLLớpHọcPhầnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            QLLopHocPhancs f = new QLLopHocPhancs();
+            this.Hide();
+            f.ShowDialog();
+            this.Show();
+        }
     }
 }

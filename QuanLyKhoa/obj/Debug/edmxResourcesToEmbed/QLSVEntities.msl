@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLSVModelStoreContainer" CdmEntityContainer="QLSVEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="QLSVModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblChucVus">
+      <EntityTypeMapping TypeName="QLSVModel.tblChucVu">
+        <MappingFragment StoreEntitySet="tblChucVu">
+          <ScalarProperty Name="CV_ID" ColumnName="CV_ID" />
+          <ScalarProperty Name="CV_TenChucVu" ColumnName="CV_TenChucVu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDangNhaps">
+      <EntityTypeMapping TypeName="QLSVModel.tblDangNhap">
+        <MappingFragment StoreEntitySet="tblDangNhap">
+          <ScalarProperty Name="TK_ID" ColumnName="TK_ID" />
+          <ScalarProperty Name="TK_TenDangNhap" ColumnName="TK_TenDangNhap" />
+          <ScalarProperty Name="TK_MatKhau" ColumnName="TK_MatKhau" />
+          <ScalarProperty Name="TK_QuyenHan" ColumnName="TK_QuyenHan" />
+          <ScalarProperty Name="SV_ID" ColumnName="SV_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblDiems">
+      <EntityTypeMapping TypeName="QLSVModel.tblDiem">
+        <MappingFragment StoreEntitySet="tblDiem">
+          <ScalarProperty Name="DIEM_ID" ColumnName="DIEM_ID" />
+          <ScalarProperty Name="SV_ID" ColumnName="SV_ID" />
+          <ScalarProperty Name="LHP_ID" ColumnName="LHP_ID" />
+          <ScalarProperty Name="DIEM_ChuyenCan" ColumnName="DIEM_ChuyenCan" />
+          <ScalarProperty Name="DIEM_GiuaKy" ColumnName="DIEM_GiuaKy" />
+          <ScalarProperty Name="DIEM_CuoiKy" ColumnName="DIEM_CuoiKy" />
+          <ScalarProperty Name="DIEM_TongKet" ColumnName="DIEM_TongKet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHocKies">
+      <EntityTypeMapping TypeName="QLSVModel.tblHocKy">
+        <MappingFragment StoreEntitySet="tblHocKy">
+          <ScalarProperty Name="HK_ID" ColumnName="HK_ID" />
+          <ScalarProperty Name="HK_TenHocKy" ColumnName="HK_TenHocKy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHocPhans">
+      <EntityTypeMapping TypeName="QLSVModel.tblHocPhan">
+        <MappingFragment StoreEntitySet="tblHocPhan">
+          <ScalarProperty Name="HP_ID" ColumnName="HP_ID" />
+          <ScalarProperty Name="HP_TenHocPhan" ColumnName="HP_TenHocPhan" />
+          <ScalarProperty Name="HP_SoTinChi" ColumnName="HP_SoTinChi" />
+          <ScalarProperty Name="HP_SoTietLyThuyet" ColumnName="HP_SoTietLyThuyet" />
+          <ScalarProperty Name="HP_SoTietThucHanh" ColumnName="HP_SoTietThucHanh" />
+          <ScalarProperty Name="HP_MoTa" ColumnName="HP_MoTa" />
+          <ScalarProperty Name="NG_ID" ColumnName="NG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblKhoas">
+      <EntityTypeMapping TypeName="QLSVModel.tblKhoa">
+        <MappingFragment StoreEntitySet="tblKhoa">
+          <ScalarProperty Name="K_ID" ColumnName="K_ID" />
+          <ScalarProperty Name="K_TenKhoa" ColumnName="K_TenKhoa" />
+          <ScalarProperty Name="K_TenTruongKhoa" ColumnName="K_TenTruongKhoa" />
+          <ScalarProperty Name="K_DiaChi" ColumnName="K_DiaChi" />
+          <ScalarProperty Name="K_DienThoai" ColumnName="K_DienThoai" />
+          <ScalarProperty Name="K_Email" ColumnName="K_Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblKhoaHocs">
+      <EntityTypeMapping TypeName="QLSVModel.tblKhoaHoc">
+        <MappingFragment StoreEntitySet="tblKhoaHoc">
+          <ScalarProperty Name="KH_ID" ColumnName="KH_ID" />
+          <ScalarProperty Name="KH_TenKhoaHoc" ColumnName="KH_TenKhoaHoc" />
+          <ScalarProperty Name="KH_NamBatDau" ColumnName="KH_NamBatDau" />
+          <ScalarProperty Name="KH_NamKetThuc" ColumnName="KH_NamKetThuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLopHanhChinhs">
+      <EntityTypeMapping TypeName="QLSVModel.tblLopHanhChinh">
+        <MappingFragment StoreEntitySet="tblLopHanhChinh">
+          <ScalarProperty Name="LP_ID" ColumnName="LP_ID" />
+          <ScalarProperty Name="LP_TenLop" ColumnName="LP_TenLop" />
+          <ScalarProperty Name="LP_TenChuNhiem" ColumnName="LP_TenChuNhiem" />
+          <ScalarProperty Name="NG_ID" ColumnName="NG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLopHocPhans">
+      <EntityTypeMapping TypeName="QLSVModel.tblLopHocPhan">
+        <MappingFragment StoreEntitySet="tblLopHocPhan">
+          <ScalarProperty Name="LHP_ID" ColumnName="LHP_ID" />
+          <ScalarProperty Name="HP_ID" ColumnName="HP_ID" />
+          <ScalarProperty Name="LHP_TenLopHP" ColumnName="LHP_TenLopHP" />
+          <ScalarProperty Name="LHP_GiangVien" ColumnName="LHP_GiangVien" />
+          <ScalarProperty Name="NH_ID" ColumnName="NH_ID" />
+          <ScalarProperty Name="HK_ID" ColumnName="HK_ID" />
+          <ScalarProperty Name="LHP_PhongHoc" ColumnName="LHP_PhongHoc" />
+          <ScalarProperty Name="LHP_NgayBatDau" ColumnName="LHP_NgayBatDau" />
+          <ScalarProperty Name="LHP_NgayKetThuc" ColumnName="LHP_NgayKetThuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblNamHocs">
+      <EntityTypeMapping TypeName="QLSVModel.tblNamHoc">
+        <MappingFragment StoreEntitySet="tblNamHoc">
+          <ScalarProperty Name="NH_ID" ColumnName="NH_ID" />
+          <ScalarProperty Name="NH_TenNamHoc" ColumnName="NH_TenNamHoc" />
+          <ScalarProperty Name="NH_MoTa" ColumnName="NH_MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblNganhs">
+      <EntityTypeMapping TypeName="QLSVModel.tblNganh">
+        <MappingFragment StoreEntitySet="tblNganh">
+          <ScalarProperty Name="NG_ID" ColumnName="NG_ID" />
+          <ScalarProperty Name="NG_TenNganh" ColumnName="NG_TenNganh" />
+          <ScalarProperty Name="NG_SoTinChi" ColumnName="NG_SoTinChi" />
+          <ScalarProperty Name="NG_MoTa" ColumnName="NG_MoTa" />
+          <ScalarProperty Name="K_ID" ColumnName="K_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSinhViens">
+      <EntityTypeMapping TypeName="QLSVModel.tblSinhVien">
+        <MappingFragment StoreEntitySet="tblSinhVien">
+          <ScalarProperty Name="SV_ID" ColumnName="SV_ID" />
+          <ScalarProperty Name="SV_MaSV" ColumnName="SV_MaSV" />
+          <ScalarProperty Name="SV_HoVaTen" ColumnName="SV_HoVaTen" />
+          <ScalarProperty Name="SV_NgaySinh" ColumnName="SV_NgaySinh" />
+          <ScalarProperty Name="SV_GioiTinh" ColumnName="SV_GioiTinh" />
+          <ScalarProperty Name="SV_DiaChi" ColumnName="SV_DiaChi" />
+          <ScalarProperty Name="SV_Email" ColumnName="SV_Email" />
+          <ScalarProperty Name="SV_DienThoai" ColumnName="SV_DienThoai" />
+          <ScalarProperty Name="LP_ID" ColumnName="LP_ID" />
+          <ScalarProperty Name="KH_ID" ColumnName="KH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSinhVien_ChucVu">
+      <EntityTypeMapping TypeName="QLSVModel.tblSinhVien_ChucVu">
+        <MappingFragment StoreEntitySet="tblSinhVien_ChucVu">
+          <ScalarProperty Name="SVCV_ID" ColumnName="SVCV_ID" />
+          <ScalarProperty Name="SV_ID" ColumnName="SV_ID" />
+          <ScalarProperty Name="CV_ID" ColumnName="CV_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_ChucVu">
+      <EntityTypeMapping TypeName="QLSVModel.View_ChucVu">
+        <MappingFragment StoreEntitySet="View_ChucVu">
+          <ScalarProperty Name="SVCV_ID" ColumnName="SVCV_ID" />
+          <ScalarProperty Name="SV_HoVaTen" ColumnName="SV_HoVaTen" />
+          <ScalarProperty Name="CV_TenChucVu" ColumnName="CV_TenChucVu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Diem">
+      <EntityTypeMapping TypeName="QLSVModel.View_Diem">
+        <MappingFragment StoreEntitySet="View_Diem">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="HK_TenHocKy" ColumnName="HK_TenHocKy" />
+          <ScalarProperty Name="LHP_TenLopHP" ColumnName="LHP_TenLopHP" />
+          <ScalarProperty Name="SV_HoVaTen" ColumnName="SV_HoVaTen" />
+          <ScalarProperty Name="DIEM_ChuyenCan" ColumnName="DIEM_ChuyenCan" />
+          <ScalarProperty Name="DIEM_GiuaKy" ColumnName="DIEM_GiuaKy" />
+          <ScalarProperty Name="DIEM_CuoiKy" ColumnName="DIEM_CuoiKy" />
+          <ScalarProperty Name="DIEM_TongKet" ColumnName="DIEM_TongKet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_HocPhan">
+      <EntityTypeMapping TypeName="QLSVModel.View_HocPhan">
+        <MappingFragment StoreEntitySet="View_HocPhan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="K_TenKhoa" ColumnName="K_TenKhoa" />
+          <ScalarProperty Name="NG_TenNganh" ColumnName="NG_TenNganh" />
+          <ScalarProperty Name="HP_TenHocPhan" ColumnName="HP_TenHocPhan" />
+          <ScalarProperty Name="HP_SoTinChi" ColumnName="HP_SoTinChi" />
+          <ScalarProperty Name="HP_SoTietLyThuyet" ColumnName="HP_SoTietLyThuyet" />
+          <ScalarProperty Name="HP_SoTietThucHanh" ColumnName="HP_SoTietThucHanh" />
+          <ScalarProperty Name="HP_MoTa" ColumnName="HP_MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_KhoaHoc">
+      <EntityTypeMapping TypeName="QLSVModel.View_KhoaHoc">
+        <MappingFragment StoreEntitySet="View_KhoaHoc">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="KH_TenKhoaHoc" ColumnName="KH_TenKhoaHoc" />
+          <ScalarProperty Name="SV_HoVaTen" ColumnName="SV_HoVaTen" />
+          <ScalarProperty Name="KH_NamBatDau" ColumnName="KH_NamBatDau" />
+          <ScalarProperty Name="KH_NamKetThuc" ColumnName="KH_NamKetThuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_LopHanhChinh">
+      <EntityTypeMapping TypeName="QLSVModel.View_LopHanhChinh">
+        <MappingFragment StoreEntitySet="View_LopHanhChinh">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="K_TenKhoa" ColumnName="K_TenKhoa" />
+          <ScalarProperty Name="NG_TenNganh" ColumnName="NG_TenNganh" />
+          <ScalarProperty Name="LP_TenLop" ColumnName="LP_TenLop" />
+          <ScalarProperty Name="LP_TenChuNhiem" ColumnName="LP_TenChuNhiem" />
+          <ScalarProperty Name="SV_HoVaTen" ColumnName="SV_HoVaTen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_LopHocPhan">
+      <EntityTypeMapping TypeName="QLSVModel.View_LopHocPhan">
+        <MappingFragment StoreEntitySet="View_LopHocPhan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="HP_TenHocPhan" ColumnName="HP_TenHocPhan" />
+          <ScalarProperty Name="LHP_TenLopHP" ColumnName="LHP_TenLopHP" />
+          <ScalarProperty Name="SV_HoVaTen" ColumnName="SV_HoVaTen" />
+          <ScalarProperty Name="LHP_GiangVien" ColumnName="LHP_GiangVien" />
+          <ScalarProperty Name="LHP_PhongHoc" ColumnName="LHP_PhongHoc" />
+          <ScalarProperty Name="LHP_NgayBatDau" ColumnName="LHP_NgayBatDau" />
+          <ScalarProperty Name="LHP_NgayKetThuc" ColumnName="LHP_NgayKetThuc" />
+          <ScalarProperty Name="HK_TenHocKy" ColumnName="HK_TenHocKy" />
+          <ScalarProperty Name="NH_TenNamHoc" ColumnName="NH_TenNamHoc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_NamHoc">
+      <EntityTypeMapping TypeName="QLSVModel.View_NamHoc">
+        <MappingFragment StoreEntitySet="View_NamHoc">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="LHP_TenLopHP" ColumnName="LHP_TenLopHP" />
+          <ScalarProperty Name="NH_TenNamHoc" ColumnName="NH_TenNamHoc" />
+          <ScalarProperty Name="NH_MoTa" ColumnName="NH_MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Nganh">
+      <EntityTypeMapping TypeName="QLSVModel.View_Nganh">
+        <MappingFragment StoreEntitySet="View_Nganh">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="K_TenKhoa" ColumnName="K_TenKhoa" />
+          <ScalarProperty Name="NG_TenNganh" ColumnName="NG_TenNganh" />
+          <ScalarProperty Name="NG_SoTinChi" ColumnName="NG_SoTinChi" />
+          <ScalarProperty Name="NG_MoTa" ColumnName="NG_MoTa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_SinhVien">
+      <EntityTypeMapping TypeName="QLSVModel.View_SinhVien">
+        <MappingFragment StoreEntitySet="View_SinhVien">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="K_TenKhoa" ColumnName="K_TenKhoa" />
+          <ScalarProperty Name="NG_TenNganh" ColumnName="NG_TenNganh" />
+          <ScalarProperty Name="LP_TenLop" ColumnName="LP_TenLop" />
+          <ScalarProperty Name="KH_TenKhoaHoc" ColumnName="KH_TenKhoaHoc" />
+          <ScalarProperty Name="SV_MaSV" ColumnName="SV_MaSV" />
+          <ScalarProperty Name="SV_HoVaTen" ColumnName="SV_HoVaTen" />
+          <ScalarProperty Name="SV_NgaySinh" ColumnName="SV_NgaySinh" />
+          <ScalarProperty Name="SV_GioiTinh" ColumnName="SV_GioiTinh" />
+          <ScalarProperty Name="SV_DiaChi" ColumnName="SV_DiaChi" />
+          <ScalarProperty Name="SV_Email" ColumnName="SV_Email" />
+          <ScalarProperty Name="SV_DienThoai" ColumnName="SV_DienThoai" />
+          <ScalarProperty Name="CV_TenChucVu" ColumnName="CV_TenChucVu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_TaiKhoan">
+      <EntityTypeMapping TypeName="QLSVModel.View_TaiKhoan">
+        <MappingFragment StoreEntitySet="View_TaiKhoan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="SV_HoVaTen" ColumnName="SV_HoVaTen" />
+          <ScalarProperty Name="TK_TenDangNhap" ColumnName="TK_TenDangNhap" />
+          <ScalarProperty Name="TK_MatKhau" ColumnName="TK_MatKhau" />
+          <ScalarProperty Name="TK_QuyenHan" ColumnName="TK_QuyenHan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

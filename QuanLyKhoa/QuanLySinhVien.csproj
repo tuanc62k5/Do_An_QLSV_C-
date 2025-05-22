@@ -33,8 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,12 +60,69 @@
     <Compile Include="GiaoDien.Designer.cs">
       <DependentUpon>GiaoDien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Linq\QLHocPhan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linq\QLHocPhan.Designer.cs">
+      <DependentUpon>QLHocPhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Linq\QLKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linq\QLKhoa.Designer.cs">
+      <DependentUpon>QLKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Linq\QLKhoaHoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linq\QLKhoaHoc.Designer.cs">
+      <DependentUpon>QLKhoaHoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Linq\QLLopHanhChinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linq\QLLopHanhChinh.Designer.cs">
+      <DependentUpon>QLLopHanhChinh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Linq\QLLopHocPhancs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linq\QLLopHocPhancs.Designer.cs">
+      <DependentUpon>QLLopHocPhancs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Linq\QLNamHoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linq\QLNamHoc.Designer.cs">
+      <DependentUpon>QLNamHoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Linq\QLNganh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Linq\QLNganh.Designer.cs">
+      <DependentUpon>QLNganh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QLSVEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLSVEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLSVEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLSVEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLSVEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="QuanLyDiem.cs">
       <SubType>Form</SubType>
@@ -114,8 +178,101 @@
     <Compile Include="QuanLySinhVien.Designer.cs">
       <DependentUpon>QuanLySinhVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblChucVu.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDangNhap.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblDiem.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblHocKy.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblHocPhan.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblKhoa.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblKhoaHoc.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLopHanhChinh.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLopHocPhan.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblNamHoc.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblNganh.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSinhVien.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblSinhVien_ChucVu.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_ChucVu.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Diem.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_HocPhan.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_KhoaHoc.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_LopHanhChinh.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_LopHocPhan.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_NamHoc.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_Nganh.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_SinhVien.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_TaiKhoan.cs">
+      <DependentUpon>QLSVEntities.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="GiaoDien.resx">
       <DependentUpon>GiaoDien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linq\QLHocPhan.resx">
+      <DependentUpon>QLHocPhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linq\QLKhoa.resx">
+      <DependentUpon>QLKhoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linq\QLKhoaHoc.resx">
+      <DependentUpon>QLKhoaHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linq\QLLopHanhChinh.resx">
+      <DependentUpon>QLLopHanhChinh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linq\QLLopHocPhancs.resx">
+      <DependentUpon>QLLopHocPhancs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linq\QLNamHoc.resx">
+      <DependentUpon>QLNamHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linq\QLNganh.resx">
+      <DependentUpon>QLNganh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -149,6 +306,7 @@
     <EmbeddedResource Include="QuanLySinhVien.resx">
       <DependentUpon>QuanLySinhVien.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -163,7 +321,29 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="QLSVEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLSVEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="QLSVEntities.edmx.diagram">
+      <DependentUpon>QLSVEntities.edmx</DependentUpon>
+    </None>
     <None Include="Resources\DHV.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QLSVEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QLSVEntities.Context.cs</LastGenOutput>
+      <DependentUpon>QLSVEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="QLSVEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLSVEntities.edmx</DependentUpon>
+      <LastGenOutput>QLSVEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

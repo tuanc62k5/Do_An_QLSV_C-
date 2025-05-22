@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="156cac85ac0d447ca234cb80020066f3" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="QLSVModel.sysdiagram" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblChucVu" Width="1.5" PointX="7.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblDangNhap" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblDiem" Width="1.5" PointX="9.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblHocKy" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblHocPhan" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblKhoa" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblKhoaHoc" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblLopHanhChinh" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblLopHocPhan" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblNamHoc" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblNganh" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblSinhVien" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.tblSinhVien_ChucVu" Width="1.5" PointX="9.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_ChucVu" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_Diem" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_HocPhan" Width="1.5" PointX="11.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_KhoaHoc" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_LopHanhChinh" Width="1.5" PointX="11.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_LopHocPhan" Width="1.5" PointX="11.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_NamHoc" Width="1.5" PointX="11.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_Nganh" Width="1.5" PointX="13.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_SinhVien" Width="1.5" PointX="13.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSVModel.View_TaiKhoan" Width="1.5" PointX="13.75" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="QLSVModel.FK_tblSinhVien_ChucVu_tblChucVu" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblDangNhap_tblSinhVien" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblDiem_tblLopHocPhan" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblDiem_tblSinhVien" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblLopHocPhan_tblHocKy" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblHocPhan_tblNganh" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblLopHocPhan_tblHocPhan" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblNganh_tblKhoa" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblSinhVien_tblKhoaHoc" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblLopHanhChinh_tblNganh" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblSinhVien_tblLopHanhChinh" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblLopHocPhan_tblNamHoc" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSVModel.FK_tblSinhVien_ChucVu_tblSinhVien" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

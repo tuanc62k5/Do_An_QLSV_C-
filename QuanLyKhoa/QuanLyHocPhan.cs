@@ -8,7 +8,6 @@ namespace QuanLyKhoa
     {
         DBservices db = new DBservices();
         private bool AddNew = false;
-        private bool LoadingData = false;
         public QuanLyHocPhan()
         {
             InitializeComponent();
@@ -17,190 +16,147 @@ namespace QuanLyKhoa
         private void QuanLyHocPhan_Load(object sender, EventArgs e)
         {
             LoadNganh();
+            LoadHocPhan();
             setEnable(false);
+            cboNganh.SelectedIndexChanged += cboNganh_SelectedIndexChanged;
         }
         private void LoadNganh()
         {
-            LoadingData = true;
             string sql = "SELECT * FROM tblNganh";
             DataTable dt = db.GetData(sql);
-
-            DataRow row = dt.NewRow();
-            row["NG_ID"] = 0;
-            row["NG_TenNganh"] = "Tất cả Nganh";
-            dt.Rows.InsertAt(row, 0);
-
             cboNganh.DataSource = dt;
             cboNganh.DisplayMember = "NG_TenNganh";
             cboNganh.ValueMember = "NG_ID";
-
-            if (cboNganh.SelectedIndex == -1)
-            {
-                cboNganh.SelectedIndex = 0;
-            }
-            LoadingData = false;
-            LoadHocPhanTheoNganh(0);
         }
-        private void LoadHocPhanTheoNganh(int NG_ID)
+
+        private void LoadHocPhan()
         {
-            if (LoadingData) return;
-            string sql = NG_ID == 0 ? "SELECT * FROM tblHocPhan" : $"SELECT * FROM tblHocPhan WHERE NG_ID = {NG_ID}";
-            DataTable dt = db.GetData(sql);
-
-            cboHocPhan.SelectedIndexChanged -= cboHocPhan_SelectedIndexChanged;
-
-            cboHocPhan.DataSource = dt;
-            cboHocPhan.DisplayMember = "HP_TenHocPhan";
-            cboHocPhan.ValueMember = "HP_ID";
-
-            cboHocPhan.SelectedIndexChanged += cboHocPhan_SelectedIndexChanged;
-
-            this.BeginInvoke(new Action(() =>
-            {
-                dgvUsers.DataSource = null;
-                dgvUsers.DataSource = dt;
-            }));
-            if (int.TryParse(cboNganh.SelectedValue?.ToString(), out int currentNganh) && currentNganh == 0) return;
+            string sql = "SELECT HP_ID, HP_TenHocPhan, HP_SoTinChi, HP_SoTietLyThuyet, HP_SoTietThucHanh, HP_MoTa, NG_TenNganh, HP.NG_ID " +
+                         "FROM tblHocPhan HP JOIN tblNganh NG ON HP.NG_ID = NG.NG_ID";
+            dgvUsers.DataSource = db.GetData(sql);
         }
         private void cboNganh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (LoadingData || cboNganh.SelectedValue == null || cboNganh.SelectedValue is DataRowView) return;
-            if (int.TryParse(cboNganh.SelectedValue.ToString(), out int NG_ID))
+            if (cboNganh.SelectedValue != null && cboNganh.SelectedValue is int)
             {
-                LoadHocPhanTheoNganh(NG_ID);
-            }
-        }
-        private void cboHocPhan_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (LoadingData || cboHocPhan.SelectedValue == null || cboHocPhan.SelectedValue is DataRowView) return;
-            if (int.TryParse(cboHocPhan.SelectedValue.ToString(), out int HP_ID))
-            {
-                this.BeginInvoke(new Action(() =>
+                int HienThiNganhID = (int)cboNganh.SelectedValue;
+                string sql = string.Format(
+                    "SELECT HP_ID, HP_TenHocPhan, HP_SoTinChi, HP_SoTietLyThuyet, HP_SoTietThucHanh, NG_TenNganh, NG.NG_ID " +
+                    "FROM tblHocPhan HP JOIN tblNganh NG ON HP.NG_ID = NG.NG_ID " +
+                    "WHERE HP.NG_ID = {0}", HienThiNganhID);
+                this.BeginInvoke((MethodInvoker)(() =>
                 {
-                    string sql = $"SELECT * FROM tblHocPhan WHERE HP_ID = {HP_ID}";
-                    DataTable dt = db.GetData(sql);
-                    dgvUsers.DataSource = null;
-                    dgvUsers.DataSource = dt;
+                    dgvUsers.DataSource = db.GetData(sql);
                 }));
-            }
-        }
-        private void dgvUsers_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            if (LoadingData) return;
-            int i = e.RowIndex;
-            if (i >= 0 && dgvUsers.Rows[i].Cells["HP_ID"].Value != null)
-            {
-                LoadingData = true;
-                cboHocPhan.SelectedValue = dgvUsers.Rows[i].Cells["HP_ID"].Value;
-                if (int.TryParse(cboHocPhan.SelectedValue?.ToString(), out int selectHocPhanID) && selectHocPhanID != 0)
-                {
-                    cboNganh.SelectedValue = dgvUsers.Rows[i].Cells["NG_ID"].Value;
-                }
-                txtSoTinChi.Text = dgvUsers.Rows[i].Cells["HP_SoTinChi"].Value.ToString();
-                txtSoTietLyThuyet.Text = dgvUsers.Rows[i].Cells["HP_SoTietLyThuyet"].Value.ToString();
-                txtSoTietThucHanh.Text = dgvUsers.Rows[i].Cells["HP_SoTietThucHanh"].Value.ToString();
-                txtMoTa.Text = dgvUsers.Rows[i].Cells["HP_MoTa"].Value.ToString();
-                LoadingData = false;
             }
         }
         private void setEnable(bool enable)
         {
             cboNganh.Enabled = true;
-            cboHocPhan.Enabled = true;
+            txtHocPhan.Enabled = enable;
             txtSoTinChi.Enabled = enable;
             txtSoTietLyThuyet.Enabled = enable;
             txtSoTietThucHanh.Enabled = enable;
             txtMoTa.Enabled = enable;
+            btnSave.Enabled = enable;
             btnAddNew.Enabled = !enable;
             btnEdit.Enabled = !enable;
             btnDelete.Enabled = !enable;
-            btnSave.Enabled = enable;
             btnExit.Enabled = !enable;
-
-            if (enable && AddNew)
+            btnLamMoi.Enabled = !enable;
+            btnTimKiem.Enabled = !enable;
+        }
+        private void dgvUsers_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = e.RowIndex;
+            if (i >= 0)
             {
-                cboHocPhan.Text = "";
-                cboNganh.SelectedIndex = 0;
-                txtSoTinChi.Enabled = enable;
-                txtSoTietLyThuyet.Enabled = enable;
-                txtSoTietThucHanh.Enabled = enable;
-                txtMoTa.Enabled = enable;
+                txtHocPhan.Text = dgvUsers.Rows[i].Cells["HP_TenHocPhan"].Value.ToString();
+                txtSoTinChi.Text = dgvUsers.Rows[i].Cells["HP_SoTinChi"].Value.ToString();
+                txtSoTietLyThuyet.Text = dgvUsers.Rows[i].Cells["HP_SoTietLyThuyet"].Value.ToString();
+                txtSoTietThucHanh.Text = dgvUsers.Rows[i].Cells["HP_SoTietThucHanh"].Value.ToString();
+                txtMoTa.Text = dgvUsers.Rows[i].Cells["HP_MoTa"].Value.ToString();
             }
         }
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             AddNew = true;
-            cboHocPhan.DropDownStyle = ComboBoxStyle.DropDown;
-            cboHocPhan.Text = "";
-            txtSoTinChi.Text = "";
-            txtSoTietLyThuyet.Text = "";
-            txtSoTietThucHanh.Text = "";
-            txtMoTa.Text = "";
             setEnable(true);
+            txtHocPhan.Clear();
+            txtSoTinChi.Clear();
+            txtSoTietLyThuyet.Clear();
+            txtSoTietThucHanh.Clear();
+            txtMoTa.Clear();
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
             AddNew = false;
-            cboHocPhan.DropDownStyle = ComboBoxStyle.DropDownList;
             setEnable(true);
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string hocphan = cboHocPhan.Text.Trim();
+            string hocphan = txtHocPhan.Text.Trim();
             string stc = txtSoTinChi.Text.Trim();
             string stlt = txtSoTietLyThuyet.Text.Trim();
             string stth = txtSoTietThucHanh.Text.Trim();
             string mt = txtMoTa.Text.Trim();
-            string nganh = cboNganh.SelectedValue?.ToString();
-            LoadingData = true;
+            int NganhID = Convert.ToInt32(cboNganh.SelectedValue);
+
+            if (string.IsNullOrWhiteSpace(hocphan) || string.IsNullOrWhiteSpace(stc))
+            {
+                MessageBox.Show("Vui lòng nhập đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string sql;
             if (AddNew)
             {
-                string sql = $"INSERT INTO tblHocPhan (HP_TenHocPhan, HP_SoTinChi, HP_SoTietLyThuyet, HP_SoTietThucHanh, HP_MoTa, NG_ID) VALUES (N'{hocphan}', N'{stc}', N'{stlt}', N'{stth}', N'{mt}', N'{nganh}')";
-                db.runQuery(sql);
-                AddNew = false;
+                sql = string.Format("INSERT INTO tblHocPhan (HP_TenHocPhan, HP_SoTinChi, HP_SoTietLyThuyet, HP_SoTietThucHanh, HP_MoTa, NG_ID) " +
+                                    "VALUES (N'{0}', {1}, {2}, {3}, N'{4}', {5})", hocphan, stc, stlt, stth, mt, NganhID);
             }
             else
             {
-                string id = cboHocPhan.SelectedValue?.ToString();
-                string sql = $"UPDATE tblHocPhan SET HP_TenHocPhan=N'{hocphan}', HP_SoTinChi=N'{stc}', HP_SoTietLyThuyet=N'{stlt}', HP_SoTietThucHanh=N'{stth}', HP_MoTa=N'{mt}', NG_ID=N'{nganh}' WHERE HP_ID=N'{id}'";
-                db.runQuery(sql);
+                int id = Convert.ToInt32(dgvUsers.CurrentRow.Cells["HP_ID"].Value);
+                sql = string.Format("UPDATE tblHocPhan SET HP_TenHocPhan = N'{0}', HP_SoTinChi = {1}, HP_SoTietLyThuyet = {2}, " +
+                                    "HP_SoTietThucHanh = {3}, HP_MoTa = N'{4}', NG_ID = {5} WHERE HP_ID = {6}",
+                                    hocphan, stc, stlt, stth, mt, NganhID, id);
             }
-            if (int.TryParse(nganh, out int NG_ID))
-                LoadHocPhanTheoNganh(NG_ID);
 
+            db.runQuery(sql);
+            LoadHocPhan();
             setEnable(false);
-            LoadingData = false;
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string id = cboHocPhan.SelectedValue?.ToString();
-            if (string.IsNullOrEmpty(id)) return;
-
-            string sql1 = $"SELECT LHP_ID FROM tblLopHocPhan WHERE HP_ID = N'{id}'";
-            DataTable dtLHP = db.GetData(sql1);
-
-            foreach (DataRow row in dtLHP.Rows)
+            if (dgvUsers.CurrentRow != null)
             {
-                string LHP_ID = row["LHP_ID"].ToString();
-                string sql2 = $"DELETE FROM tblDiem WHERE LHP_ID = N'{LHP_ID}'";
-                db.runQuery(sql2);
+                int id = Convert.ToInt32(dgvUsers.CurrentRow.Cells["HP_ID"].Value);
+                string sql = string.Format("DELETE FROM tblHocPhan WHERE HP_ID = {0}", id);
+                db.runQuery(sql);
+                LoadHocPhan();
             }
-
-            string sql3 = $"DELETE FROM tblLopHocPhan WHERE HP_ID = N'{id}'";
-            db.runQuery(sql3);
-
-            string sql4 = $"DELETE FROM tblHocPhan WHERE HP_ID = N'{id}'";
-            db.runQuery(sql4);
-
-            if (int.TryParse(cboNganh.SelectedValue.ToString(), out int NG_ID))
-                LoadHocPhanTheoNganh(NG_ID);
-
-            dgvUsers.DataSource = null;
-            setEnable(false);
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            LoadHocPhan();
+            txtTimKiem.Clear();
+        }
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string TenHocPhan = txtTimKiem.Text.Trim();
+            string sql = "SELECT HP_ID, HP_TenHocPhan, HP_SoTinChi, HP_SoTietLyThuyet, HP_SoTietThucHanh, HP_MoTa, NG_TenNganh, HP.NG_ID " +
+                         "FROM tblHocPhan HP JOIN tblNganh NG ON HP.NG_ID = NG.NG_ID";
+
+            if (!string.IsNullOrWhiteSpace(TenHocPhan))
+            {
+                sql += string.Format(" WHERE HP_TenHocPhan = N'{0}'", TenHocPhan);
+            }
+
+            dgvUsers.DataSource = db.GetData(sql);
         }
     }
 

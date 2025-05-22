@@ -17,3 +17,13 @@ D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Qu
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyNamHoc.resources
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.GiaoDien.resources
 D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.QuanLyDiem.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\bin\Debug\EntityFramework.dll
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\bin\Debug\EntityFramework.xml
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Linq.QLKhoa.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLySi.3CF0D20D.Up2Date
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Linq.QLNganh.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Linq.QLHocPhan.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Linq.QLLopHanhChinh.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Linq.QLKhoaHoc.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Linq.QLLopHocPhancs.resources
+D:\baitap\DoAnCNNet\QuanLySinhVien\QuanLyKhoa\QuanLyKhoa\obj\Debug\QuanLyKhoa.Linq.QLNamHoc.resources
